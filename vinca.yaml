@@ -6,9 +6,9 @@ conda_index:
   - packages-ignore.yaml
 
 # Reminder for next full rebuild, the next build number should be 8
-build_number: 7
+build_number: 1
 
-mutex_package: ros2-distro-mutex 0.9.* rolling_*
+mutex_package: ros2-distro-mutex 0.1.* rolling_*
 
 skip_all_deps: false
 
@@ -19,20 +19,25 @@ full_rebuild: true
 packages_skip_by_deps:
   - cartographer
   - urdfdom
-  - urdfdom_py
   - urdfdom_headers
-  - pendulum_control
-  - rttest
-  - tlsf
-  - tlsf_cpp
+  - urdfdom_py
   - octomap
+  - if: not linux
+    then:
+      - rttest
+      - tlsf
+      - tlsf_cpp
+      - pendulum_control
 
 packages_remove_from_deps:
   - cartographer
-  - pendulum_control
-  - rttest
-  - tlsf
-  - tlsf_cpp
+  - if: not linux
+    then:
+      - rttest
+      - tlsf
+      - tlsf_cpp
+      - pendulum_control
+
 
 skip_existing:
   # - output
@@ -75,7 +80,19 @@ packages_select_by_deps:
   - slam_toolbox
   - turtlebot3
 
-  - plotjuggler-ros
+
+  - if: not win
+    then:
+      # skip for now
+      - plotjuggler-ros
+      # velodyne packages are not supported on Windows
+      - velodyne
+      # Commented out as in the next rebuild on Windows we will switch to use the conda-forge version
+      - gtsam
+      - foxglove_compressed_video_transport
+      - gridmap
+      # TODO: fix iconv link issue on Windows
+      - ffmpeg_image_transport
 
   - apriltag_ros
 
@@ -108,6 +125,11 @@ packages_select_by_deps:
   - can_msgs
   - ros2_socketcan_msgs
 
+  # socketcan is only available on linux
+  - if: linux
+    then:
+      - ros2_socketcan
+
   - nav2_bringup
 
   - autoware_internal_msgs
@@ -124,7 +146,7 @@ packages_select_by_deps:
   - autoware_cmake
   - autoware_utils
 
-  - ffmpeg_image_transport
+
 
 patch_dir: patch
 rosdistro_snapshot: rosdistro_snapshot.yaml
