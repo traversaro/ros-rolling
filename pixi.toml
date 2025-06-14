@@ -24,7 +24,7 @@ git = "*"
 
 [pypi-dependencies]
 # This is tipically the latest commit on main branch
-vinca = { git ="https://github.com/RoboStack/vinca.git", rev = "d387a8d19889f0cd4caa26d4849d808efac7cfc2" }
+vinca = { git ="https://github.com/RoboStack/vinca.git", rev = "1d7ba6bf809e2e2b45f6e0409590f9f71d651913" }
 # Uncomment this line to work with a local vinca for faster iteration, but remember to comment it back
 # (and regenerate the pixi.lock) once you push the modified commit to the repo
 #vinca = { path = "../vinca", editable = true }
@@ -32,6 +32,7 @@ vinca = { git ="https://github.com/RoboStack/vinca.git", rev = "d387a8d19889f0cd
 [tasks]
 upload = "anaconda -t $ANACONDA_API_TOKEN upload"
 generate-recipes = { cmd = "vinca -m" }
+check-patches = { cmd = "python check_patches_clean_apply.py", depends-on = ["generate-recipes"] }
 remove-file = { cmd = "rm -rf recipes; mkdir recipes" }
 build_additional_recipes = { cmd = "rattler-build build --recipe-dir ./additional_recipes -m ./conda_build_config.yaml --skip-existing -c robostack-rolling -c https://repo.prefix.dev/conda-forge", depends-on = ["generate-recipes"] }
 build = { cmd = "rattler-build build --recipe-dir ./recipes -m ./conda_build_config.yaml -c robostack-rolling -c https://repo.prefix.dev/conda-forge --skip-existing", depends-on = ["build_additional_recipes", "generate-recipes"] }
