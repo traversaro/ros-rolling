@@ -1,15 +1,13 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 94fd645..2a52f2c 100644
+index bdd8370..1b3b2f7 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -4,8 +4,8 @@ project(gz_gui_vendor)
- 
- # Project-specific settings
- set(LIB_VER_MAJOR 8)
--set(LIB_VER_MINOR 4)
--set(LIB_VER_PATCH 0)
-+set(LIB_VER_MINOR 1)
-+set(LIB_VER_PATCH 1)
- set(LIB_VER_SUFFIX "")
- 
- # Derived variables
+@@ -34,7 +34,7 @@ find_package(gz_utils_vendor REQUIRED)
+ # if we are users are building from source (determined by the
+ # GZ_BUILD_FROM_SOURCE environment variable) or if explicitly told to do so
+ # by the GZ_RELAX_VERSION_MATCH environment variable.
+-set(VERSION_MATCH "EXACT")
++set(VERSION_MATCH "")
+ if(NOT $ENV{GZ_BUILD_FROM_SOURCE} STREQUAL "")
+   set(VERSION_MATCH "")
+ endif()
