@@ -1,0 +1,32 @@
+octomap:
+  generate_dummy_package_with_run_deps:
+    dep_name: octomap
+    max_pin: 'x.x'
+urdfdom_py:
+  generate_dummy_package_with_run_deps:
+    dep_name: urdfdom-py
+    max_pin: 'x.x'
+urdfdom_headers:
+  generate_dummy_package_with_run_deps:
+    dep_name: urdfdom_headers
+    max_pin: 'x.x'
+urdfdom:
+  generate_dummy_package_with_run_deps:
+    dep_name: urdfdom
+    max_pin: 'x.x'
+hpp_fcl:
+  generate_dummy_package_with_run_deps:
+    dep_name: hpp-fcl
+    max_pin: 'x.x.x'
+coal:
+  generate_dummy_package_with_run_deps:
+    dep_name: coal
+    max_pin: 'x.x.x'
+eigenpy:
+  generate_dummy_package_with_run_deps:
+    dep_name: eigenpy
+    max_pin: 'x.x.x'
+pinocchio:
+  generate_dummy_package_with_run_deps:
+    dep_name: pinocchio
+    max_pin: 'x.x.x'
